@@ -792,8 +792,17 @@ export function Grades() {
     useState([]);
 
   useEffect(() => {
-    fetchGrades();
-  }, []);
+
+    if (
+      user?.id ||
+      user?.user_id
+    ) {
+
+      fetchGrades();
+
+    }
+
+  }, [user]);
 
   // =====================================================
   // FETCH GRADES
@@ -807,14 +816,15 @@ export function Grades() {
           `${API}/grades`
         );
 
+      const studentId =
+        user?.id ||
+        user?.user_id;
+
       const myGrades =
         (res.data.data || []).filter(
           (g) =>
-            g.student_id ==
-            (
-              user?.id ||
-              user?.user_id
-            )
+            String(g.student_id) ===
+            String(studentId)
         );
 
       setGrades(myGrades);
@@ -876,7 +886,12 @@ export function Grades() {
 
               grades.map((grade) => (
 
-                <tr key={grade.id}>
+                <tr
+                  key={
+                    grade.grade_id ||
+                    grade.id
+                  }
+                >
 
                   <td>
                     {
@@ -898,7 +913,7 @@ export function Grades() {
 
                   <td>
 
-                    {grade.marks >= 50
+                    {Number(grade.marks) >= 50
                       ? "Passed"
                       : "Failed"}
 
@@ -947,8 +962,17 @@ export function Attendance() {
     useState([]);
 
   useEffect(() => {
-    fetchAttendance();
-  }, []);
+
+    if (
+      user?.id ||
+      user?.user_id
+    ) {
+
+      fetchAttendance();
+
+    }
+
+  }, [user]);
 
   // =====================================================
   // FETCH ATTENDANCE
@@ -962,14 +986,15 @@ export function Attendance() {
           `${API}/attendance`
         );
 
+      const studentId =
+        user?.id ||
+        user?.user_id;
+
       const myAttendance =
         (res.data.data || []).filter(
           (a) =>
-            a.student_id ==
-            (
-              user?.id ||
-              user?.user_id
-            )
+            String(a.student_id) ===
+            String(studentId)
         );
 
       setAttendance(
@@ -1029,7 +1054,12 @@ export function Attendance() {
 
               attendance.map((a) => (
 
-                <tr key={a.id}>
+                <tr
+                  key={
+                    a.attendance_id ||
+                    a.id
+                  }
+                >
 
                   <td>
                     {
