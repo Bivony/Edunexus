@@ -5,7 +5,6 @@ import axios from "axios";
 import { useAuth } from "../../auth/AuthSystem";
 
 const API = "https://bivonys.alwaysdata.net/api";
-
 /* =========================================================
    DASHBOARD
 ========================================================= */
@@ -20,40 +19,71 @@ export function StudentDashboard() {
     attendance: "0%"
   });
 
-  useEffect(() => {
-    loadDashboard();
-  }, []);
-
+  // =====================================================
+  // LOAD DASHBOARD
+  // =====================================================
   const loadDashboard = async () => {
 
     try {
 
-      const [
-        subjectsRes,
-        assignmentsRes,
-        gradesRes,
-        attendanceRes
-      ] = await Promise.all([
-        axios.get(`${API}/subjects`),
-        axios.get(`${API}/assignments`),
-        axios.get(`${API}/grades`),
-        axios.get(`${API}/attendance`)
-      ]);
+      const subjectsRes =
+        await axios
+          .get(`${API}/subjects`)
+          .catch(() => ({
+            data:{ data:[] }
+          }));
 
+      const assignmentsRes =
+        await axios
+          .get(`${API}/assignments`)
+          .catch(() => ({
+            data:{ data:[] }
+          }));
+
+      const gradesRes =
+        await axios
+          .get(`${API}/grades`)
+          .catch(() => ({
+            data:{ data:[] }
+          }));
+
+      const attendanceRes =
+        await axios
+          .get(`${API}/attendance`)
+          .catch(() => ({
+            data:{ data:[] }
+          }));
+
+      // =================================================
+      // USER ID
+      // =================================================
+      const studentId =
+        user?.id ||
+        user?.user_id;
+
+      // =================================================
+      // FILTER GRADES
+      // =================================================
       const grades =
         (gradesRes.data.data || []).filter(
           (g) =>
-            g.student_id ==
-            user?.user_id
+            String(g.student_id) ===
+            String(studentId)
         );
 
+      // =================================================
+      // FILTER ATTENDANCE
+      // =================================================
       const attendance =
         (attendanceRes.data.data || []).filter(
           (a) =>
-            a.student_id ==
-            user?.user_id
+            String(a.student_id) ===
+            String(studentId)
         );
 
+      // =================================================
+      // CALCULATE ATTENDANCE
+      // =================================================
       const present =
         attendance.filter(
           (a) =>
@@ -63,26 +93,58 @@ export function StudentDashboard() {
       const attendanceRate =
         attendance.length > 0
           ? Math.round(
-              (present /
-                attendance.length) *
-                100
+              (present / attendance.length) * 100
             ) + "%"
           : "0%";
 
+      // =================================================
+      // UPDATE STATS
+      // =================================================
       setStats({
+
         subjects:
           subjectsRes.data.data.length,
+
         assignments:
           assignmentsRes.data.data.length,
-        grades: grades.length,
-        attendance: attendanceRate
+
+        grades:
+          grades.length,
+
+        attendance:
+          attendanceRate
+
       });
 
     } catch (err) {
-      console.log(err);
+
+      console.log(
+        "Dashboard Error:",
+        err
+      );
+
     }
   };
 
+  // =====================================================
+  // LOAD WHEN USER READY
+  // =====================================================
+  useEffect(() => {
+
+    if (
+      user?.id ||
+      user?.user_id
+    ) {
+
+      loadDashboard();
+
+    }
+
+  }, [user]);
+
+  // =====================================================
+  // JOIN CLASS
+  // =====================================================
   const joinClass = () => {
 
     window.open(
@@ -92,7 +154,11 @@ export function StudentDashboard() {
 
   };
 
+  // =====================================================
+  // UI
+  // =====================================================
   return (
+
     <div className="dashboard-page">
 
       <div className="page-header">
@@ -121,28 +187,57 @@ export function StudentDashboard() {
       <div className="stats-grid">
 
         <div className="stat-card blue">
-          <h2>{stats.subjects}</h2>
-          <p>Subjects</p>
+
+          <h2>
+            {stats.subjects}
+          </h2>
+
+          <p>
+            Subjects
+          </p>
+
         </div>
 
         <div className="stat-card green">
-          <h2>{stats.assignments}</h2>
-          <p>Assignments</p>
+
+          <h2>
+            {stats.assignments}
+          </h2>
+
+          <p>
+            Assignments
+          </p>
+
         </div>
 
         <div className="stat-card orange">
-          <h2>{stats.grades}</h2>
-          <p>Grades</p>
+
+          <h2>
+            {stats.grades}
+          </h2>
+
+          <p>
+            Grades
+          </p>
+
         </div>
 
         <div className="stat-card red">
-          <h2>{stats.attendance}</h2>
-          <p>Attendance</p>
+
+          <h2>
+            {stats.attendance}
+          </h2>
+
+          <p>
+            Attendance
+          </p>
+
         </div>
 
       </div>
 
     </div>
+
   );
 }
 
