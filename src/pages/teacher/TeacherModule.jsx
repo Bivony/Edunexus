@@ -17,7 +17,7 @@ export function TeacherDashboard() {
     students: 0,
     subjects: 0,
     assignments: 0,
-    attendance: "94%"
+    attendance: "%"
   });
 
   useEffect(() => {
@@ -1062,7 +1062,7 @@ export function Grades() {
       const onlyStudents =
         (res.data.data || []).filter(
           (u) =>
-            u.role === "student"
+            u.role?.toLowerCase() === "student"
         );
 
       setStudents(
@@ -1071,7 +1071,10 @@ export function Grades() {
 
     } catch (err) {
 
-      console.log(err);
+      console.log(
+        "Students Error:",
+        err
+      );
 
     }
   };
@@ -1094,7 +1097,10 @@ export function Grades() {
 
     } catch (err) {
 
-      console.log(err);
+      console.log(
+        "Assignments Error:",
+        err
+      );
 
     }
   };
@@ -1117,7 +1123,10 @@ export function Grades() {
 
     } catch (err) {
 
-      console.log(err);
+      console.log(
+        "Grades Error:",
+        err
+      );
 
     }
   };
@@ -1130,7 +1139,7 @@ export function Grades() {
     if (
       !studentId ||
       !assignmentId ||
-      !marks
+      marks === ""
     ) {
 
       alert(
@@ -1142,20 +1151,30 @@ export function Grades() {
 
     try {
 
+      const payload = {
+
+        student_id:
+          Number(studentId),
+
+        assignment_id:
+          Number(assignmentId),
+
+        marks:
+          Number(marks),
+
+        feedback
+
+      };
+
+      console.log(
+        "Sending:",
+        payload
+      );
+
       const res =
         await axios.post(
           `${API}/grades`,
-          {
-            student_id:
-              studentId,
-
-            assignment_id:
-              assignmentId,
-
-            marks,
-
-            feedback
-          }
+          payload
         );
 
       alert(
@@ -1172,7 +1191,10 @@ export function Grades() {
 
     } catch (err) {
 
-      console.log(err);
+      console.log(
+        "Save Grade Error:",
+        err?.response?.data || err
+      );
 
       alert(
         err?.response?.data?.message ||
@@ -1189,11 +1211,13 @@ export function Grades() {
 
     const student =
       students.find(
-        (s) => s.id == id
+        (s) =>
+          String(s.id) ===
+          String(id)
       );
 
     return (
-      student?.name || id
+      student?.name || "Unknown"
     );
   };
 
@@ -1204,11 +1228,13 @@ export function Grades() {
 
     const assignment =
       assignments.find(
-        (a) => a.id == id
+        (a) =>
+          String(a.id) ===
+          String(id)
       );
 
     return (
-      assignment?.title || id
+      assignment?.title || "Unknown"
     );
   };
 
@@ -1217,11 +1243,7 @@ export function Grades() {
     <div className="module-page">
 
       <div className="module-header">
-
-        <h2>
-          Grades
-        </h2>
-
+        <h2>Grades</h2>
       </div>
 
       <div className="upload-box">
@@ -1317,25 +1339,11 @@ export function Grades() {
 
             <tr>
 
-              <th>
-                Student
-              </th>
-
-              <th>
-                Assignment
-              </th>
-
-              <th>
-                Marks
-              </th>
-
-              <th>
-                Feedback
-              </th>
-
-              <th>
-                Status
-              </th>
+              <th>Student</th>
+              <th>Assignment</th>
+              <th>Marks</th>
+              <th>Feedback</th>
+              <th>Status</th>
 
             </tr>
 
@@ -1366,15 +1374,12 @@ export function Grades() {
                   </td>
 
                   <td>
-                    {
-                      grade.feedback ||
-                      "-"
-                    }
+                    {grade.feedback || "-"}
                   </td>
 
                   <td>
 
-                    {grade.marks >= 50
+                    {Number(grade.marks) >= 50
                       ? "Passed"
                       : "Failed"}
 
@@ -1449,7 +1454,7 @@ export function Attendance() {
       const onlyStudents =
         (res.data.data || []).filter(
           (u) =>
-            u.role === "student"
+            u.role?.toLowerCase() === "student"
         );
 
       setStudents(
@@ -1458,7 +1463,10 @@ export function Attendance() {
 
     } catch (err) {
 
-      console.log(err);
+      console.log(
+        "Students Error:",
+        err
+      );
 
     }
   };
@@ -1481,7 +1489,10 @@ export function Attendance() {
 
     } catch (err) {
 
-      console.log(err);
+      console.log(
+        "Subjects Error:",
+        err
+      );
 
     }
   };
@@ -1504,7 +1515,10 @@ export function Attendance() {
 
     } catch (err) {
 
-      console.log(err);
+      console.log(
+        "Attendance Error:",
+        err
+      );
 
     }
   };
@@ -1528,20 +1542,29 @@ export function Attendance() {
 
     try {
 
-      await axios.post(
-        `${API}/attendance`,
-        {
-          student_id:
-            studentId,
+      const payload = {
 
-          subject_id:
-            subjectId,
+        student_id:
+          Number(studentId),
 
-          status
-        }
+        subject_id:
+          Number(subjectId),
+
+        status
+
+      };
+
+      console.log(
+        "Attendance Payload:",
+        payload
       );
 
-      fetchAttendance();
+      await axios.post(
+        `${API}/attendance`,
+        payload
+      );
+
+      await fetchAttendance();
 
       alert(
         `Student marked ${status}`
@@ -1549,9 +1572,13 @@ export function Attendance() {
 
     } catch (err) {
 
-      console.log(err);
+      console.log(
+        "Attendance Save Error:",
+        err?.response?.data || err
+      );
 
       alert(
+        err?.response?.data?.message ||
         "Failed to save attendance"
       );
 
@@ -1566,7 +1593,10 @@ export function Attendance() {
     const found =
       attendance.find(
         (a) =>
-          a.student_id == id
+          String(a.student_id) ===
+            String(id) &&
+          String(a.subject_id) ===
+            String(subjectId)
       );
 
     return (
@@ -1580,11 +1610,7 @@ export function Attendance() {
     <div className="module-page">
 
       <div className="module-header">
-
-        <h2>
-          Attendance
-        </h2>
-
+        <h2>Attendance</h2>
       </div>
 
       <div
@@ -1630,17 +1656,9 @@ export function Attendance() {
 
             <tr>
 
-              <th>
-                Student
-              </th>
-
-              <th>
-                Status
-              </th>
-
-              <th>
-                Actions
-              </th>
+              <th>Student</th>
+              <th>Status</th>
+              <th>Actions</th>
 
             </tr>
 
@@ -1648,54 +1666,73 @@ export function Attendance() {
 
           <tbody>
 
-            {students.map((student) => (
+            {students.length > 0 ? (
 
-              <tr key={student.id}>
+              students.map((student) => (
 
-                <td>
-                  {student.name}
-                </td>
+                <tr key={student.id}>
 
-                <td>
-                  {getStudentStatus(
-                    student.id
-                  )}
-                </td>
+                  <td>
+                    {student.name}
+                  </td>
 
-                <td>
+                  <td>
+                    {getStudentStatus(
+                      student.id
+                    )}
+                  </td>
 
-                  <button
-                    className="present-btn"
-                    onClick={() =>
-                      markAttendance(
-                        student.id,
-                        "Present"
-                      )
-                    }
-                  >
-                    Present
-                  </button>
+                  <td>
 
-                  <button
-                    className="absent-btn"
-                    style={{
-                      marginLeft: "10px"
-                    }}
-                    onClick={() =>
-                      markAttendance(
-                        student.id,
-                        "Absent"
-                      )
-                    }
-                  >
-                    Absent
-                  </button>
+                    <button
+                      className="present-btn"
+                      onClick={() =>
+                        markAttendance(
+                          student.id,
+                          "Present"
+                        )
+                      }
+                    >
+                      Present
+                    </button>
 
+                    <button
+                      className="absent-btn"
+                      style={{
+                        marginLeft: "10px"
+                      }}
+                      onClick={() =>
+                        markAttendance(
+                          student.id,
+                          "Absent"
+                        )
+                      }
+                    >
+                      Absent
+                    </button>
+
+                  </td>
+
+                </tr>
+
+              ))
+
+            ) : (
+
+              <tr>
+
+                <td
+                  colSpan="3"
+                  style={{
+                    textAlign: "center"
+                  }}
+                >
+                  No students found
                 </td>
 
               </tr>
 
-            ))}
+            )}
 
           </tbody>
 
