@@ -62,7 +62,7 @@ export default function Signup() {
           >
 
             <h3 className="text-center mb-3">
-              bivonys Sign Up
+              Please Sign Up
             </h3>
 
             {loading && (
