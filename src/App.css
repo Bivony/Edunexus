@@ -1,0 +1,40 @@
+/* src/App.css */
+
+.layout {
+  display: flex;
+}
+
+.sidebar {
+  width: 220px;
+  background: #1e293b;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  margin: 10px 0;
+  text-decoration: none;
+}
+
+.main {
+  flex: 1;
+}
+
+.topbar {
+  background: #f1f5f9;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content {
+  padding: 20px;
+}
+
+.grid {
+  display: flex;
+  gap: 10px;
+}

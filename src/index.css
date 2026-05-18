@@ -1,0 +1,569 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+  background: #f4f7fb;
+  color: #1e293b;
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.primary-btn {
+  background: linear-gradient(
+    135deg,
+    #6366f1,
+    #3b82f6
+  );
+  color: white;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.primary-btn:hover {
+  opacity: 0.9;
+}
+
+.view-btn {
+  background: #dbeafe;
+  color: #2563eb;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.delete-btn {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.present-btn {
+  background: #22c55e;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+
+.absent-btn {
+  background: #ef4444;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dbe2ea;
+  border-radius: 10px;
+  outline: none;
+  background: white;
+}
+
+.search-input {
+  max-width: 250px;
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+  width: 250px;
+  background: linear-gradient(
+    180deg,
+    #4f46e5,
+    #2563eb
+  );
+  color: white;
+  padding: 25px 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.sidebar a {
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.sidebar a:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+  background: white;
+  padding: 18px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.topbar h3 {
+  color: #334155;
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content {
+  padding: 25px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* =========================================================
+   PAGE HEADERS
+========================================================= */
+
+.page-header,
+.module-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.page-header h1,
+.module-header h2 {
+  margin-bottom: 5px;
+}
+
+/* =========================================================
+   DASHBOARD STATS
+========================================================= */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(220px, 1fr)
+  );
+  gap: 20px;
+}
+
+.stat-card {
+  padding: 25px;
+  border-radius: 18px;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.stat-card h2 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.stat-card.blue {
+  background: linear-gradient(
+    135deg,
+    #3b82f6,
+    #2563eb
+  );
+}
+
+.stat-card.green {
+  background: linear-gradient(
+    135deg,
+    #22c55e,
+    #16a34a
+  );
+}
+
+.stat-card.orange {
+  background: linear-gradient(
+    135deg,
+    #f59e0b,
+    #d97706
+  );
+}
+
+.stat-card.red {
+  background: linear-gradient(
+    135deg,
+    #ef4444,
+    #dc2626
+  );
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.card-grid,
+.materials-grid,
+.market-grid,
+.assignment-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  );
+  gap: 20px;
+}
+
+.subject-card,
+.material-card,
+.market-card,
+.assignment-card,
+.card,
+.live-class-card,
+.notification-card {
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.subject-card h3,
+.market-card h3,
+.assignment-card h3 {
+  margin-bottom: 10px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* =========================================================
+   MARKETPLACE
+========================================================= */
+
+.market-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+/* =========================================================
+   MATERIALS
+========================================================= */
+
+.material-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+/* =========================================================
+   TABLES
+========================================================= */
+
+.table-container {
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  overflow-x: auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th {
+  background: #f8fafc;
+  color: #334155;
+  text-align: left;
+  padding: 14px;
+}
+
+table td {
+  padding: 14px;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+.chat-layout {
+  display: flex;
+  gap: 20px;
+  height: 75vh;
+}
+
+.chat-sidebar {
+  width: 250px;
+  background: white;
+  border-radius: 18px;
+  padding: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.chat-user {
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background: #f1f5f9;
+  cursor: pointer;
+}
+
+.chat-user.active {
+  background: #3b82f6;
+  color: white;
+}
+
+.chat-box {
+  flex: 1;
+  background: white;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
+.message {
+  max-width: 70%;
+  padding: 12px 15px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.message.left {
+  background: #e2e8f0;
+}
+
+.message.right {
+  background: #3b82f6;
+  color: white;
+  margin-left: auto;
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+}
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-card {
+  background: white;
+  max-width: 500px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.profile-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.profile-card table {
+  margin-top: 20px;
+}
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+.setting-item {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* =========================================================
+   ATTENDANCE
+========================================================= */
+
+.attendance-summary {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  );
+  gap: 20px;
+}
+
+.attendance-box {
+  padding: 25px;
+  border-radius: 18px;
+  color: white;
+}
+
+.attendance-box.green {
+  background: linear-gradient(
+    135deg,
+    #22c55e,
+    #16a34a
+  );
+}
+
+.attendance-box.blue {
+  background: linear-gradient(
+    135deg,
+    #3b82f6,
+    #2563eb
+  );
+}
+
+.attendance-item {
+  background: white;
+  padding: 18px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* =========================================================
+   AUTH PAGES
+========================================================= */
+
+.auth-container {
+  width: 400px;
+  margin: 80px auto;
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* =========================================================
+   CENTER PAGE
+========================================================= */
+
+.center-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .sidebar {
+    display: none;
+  }
+
+  .layout {
+    flex-direction: column;
+  }
+
+  .chat-layout {
+    flex-direction: column;
+  }
+
+  .chat-sidebar {
+    width: 100%;
+  }
+
+  .page-header,
+  .module-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}

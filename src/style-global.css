@@ -1,0 +1,726 @@
+/* =========================================================
+   RESET
+========================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   BODY
+========================================================= */
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  color: #222;
+}
+
+/* =========================================================
+   LINKS
+========================================================= */
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+/* =========================================================
+   INPUTS
+========================================================= */
+input,
+textarea,
+select {
+  outline: none;
+  border: none;
+  font-family: inherit;
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+.sidebar {
+  width: 250px;
+  background: linear-gradient(
+    180deg,
+    #6d28d9,
+    #7c3aed
+  );
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: white;
+}
+
+/* SIDEBAR LINKS */
+.sidebar a {
+  display: block;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  transition: 0.3s;
+  color: white;
+  font-weight: 500;
+}
+
+/* HOVER */
+.sidebar a:hover {
+  background: rgba(255,255,255,0.15);
+  color: white;
+}
+
+/* ACTIVE LINK */
+.sidebar .active {
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+.main {
+  flex: 1;
+  padding: 25px;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+.page-header,
+.module-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.page-header h1,
+.module-header h2 {
+  font-size: 30px;
+}
+
+.page-header p {
+  color: #666;
+  margin-top: 5px;
+}
+
+/* =========================================================
+   BUTTON
+========================================================= */
+.primary-btn {
+  background: linear-gradient(
+    90deg,
+    #7c3aed,
+    #9333ea
+  );
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.primary-btn:hover {
+  opacity: 0.9;
+}
+
+/* =========================================================
+   STATS GRID
+========================================================= */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(220px, 1fr)
+  );
+  gap: 20px;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+.card,
+.subject-card,
+.material-card,
+.market-card,
+.assignment-card,
+.profile-card,
+.live-class-card {
+  background: white;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* =========================================================
+   STAT CARD
+========================================================= */
+.stat-card {
+  padding: 25px;
+  border-radius: 18px;
+  color: white;
+}
+
+.blue {
+  background: linear-gradient(
+    135deg,
+    #3b82f6,
+    #2563eb
+  );
+}
+
+.green {
+  background: linear-gradient(
+    135deg,
+    #10b981,
+    #059669
+  );
+}
+
+.orange {
+  background: linear-gradient(
+    135deg,
+    #f59e0b,
+    #d97706
+  );
+}
+
+.red {
+  background: linear-gradient(
+    135deg,
+    #ef4444,
+    #dc2626
+  );
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
+.table-container {
+  overflow-x: auto;
+  background: white;
+  border-radius: 18px;
+  padding: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 15px;
+  text-align: left;
+}
+
+table th {
+  background: #f3f4f6;
+}
+
+table tr {
+  border-bottom: 1px solid #eee;
+}
+
+/* =========================================================
+   PROFILE
+========================================================= */
+.profile-card {
+  max-width: 450px;
+  margin: auto;
+  text-align: center;
+}
+
+.profile-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 768px) {
+
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+}
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+body{
+  margin:0;
+  padding:0;
+  font-family:Arial, sans-serif;
+  transition:0.3s ease;
+}
+
+/* =========================================================
+   LIGHT MODE
+========================================================= */
+
+body.light{
+  background:#f4f7fb;
+  color:#111827;
+}
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.dark{
+  background:#0f172a;
+  color:white;
+}
+
+/* =========================================================
+   MODULE PAGE
+========================================================= */
+
+.module-page{
+  padding:30px;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.page-header{
+  margin-bottom:30px;
+}
+
+.page-header h1{
+  font-size:34px;
+  margin:0;
+  font-weight:700;
+}
+
+.page-header p{
+  margin-top:8px;
+  color:#6b7280;
+  font-size:15px;
+}
+
+/* =========================================================
+   PROFILE CARD
+========================================================= */
+
+.profile-card{
+  background:white;
+  border-radius:22px;
+  padding:35px;
+  display:grid;
+  grid-template-columns:320px 1fr;
+  gap:40px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
+  margin-bottom:30px;
+  transition:0.3s ease;
+}
+
+/* =========================================================
+   PROFILE LEFT
+========================================================= */
+
+.profile-top{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+}
+
+/* =========================================================
+   PROFILE IMAGE
+========================================================= */
+
+.profile-image{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  object-fit:cover;
+  border:6px solid #e5e7eb;
+}
+
+/* =========================================================
+   EMPTY PROFILE
+========================================================= */
+
+.empty-profile{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  background:#dbeafe;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+  font-weight:600;
+  color:#2563eb;
+  border:4px dashed #2563eb;
+}
+
+/* =========================================================
+   FILE INPUT
+========================================================= */
+
+.profile-top input[type="file"]{
+  width:100%;
+  background:#eff6ff;
+  padding:12px;
+  border-radius:12px;
+  cursor:pointer;
+  border:none;
+}
+
+/* =========================================================
+   PROFILE FORM
+========================================================= */
+
+.profile-form{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.profile-form input,
+.profile-form textarea,
+.settings-section select{
+  width:100%;
+  padding:15px;
+  border-radius:14px;
+  border:1px solid #d1d5db;
+  font-size:15px;
+  outline:none;
+  transition:0.3s ease;
+  background:white;
+}
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.profile-form textarea{
+  min-height:120px;
+  resize:none;
+}
+
+/* =========================================================
+   INPUT FOCUS
+========================================================= */
+
+.profile-form input:focus,
+.profile-form textarea:focus,
+.settings-section select:focus{
+  border-color:#2563eb;
+  box-shadow:0 0 0 3px rgba(37,99,235,0.15);
+}
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.primary-btn{
+  background:linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
+
+  color:white;
+  border:none;
+  padding:15px 24px;
+  border-radius:14px;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:600;
+  transition:0.3s ease;
+  width:fit-content;
+}
+
+.primary-btn:hover{
+  transform:translateY(-2px);
+  opacity:0.95;
+}
+
+/* =========================================================
+   SETTINGS CARD
+========================================================= */
+
+.settings-card{
+  background:white;
+  padding:35px;
+  border-radius:22px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
+  transition:0.3s ease;
+  max-width:500px;
+}
+
+/* =========================================================
+   SETTINGS SECTION
+========================================================= */
+
+.settings-section{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.settings-section label{
+  font-size:16px;
+  font-weight:600;
+}
+
+/* =========================================================
+   DARK MODE CARDS
+========================================================= */
+
+body.dark .profile-card,
+body.dark .settings-card{
+  background:#1e293b;
+  color:white;
+}
+
+/* =========================================================
+   DARK MODE INPUTS
+========================================================= */
+
+body.dark .profile-form input,
+body.dark .profile-form textarea,
+body.dark .settings-section select{
+  background:#334155;
+  color:white;
+  border:1px solid #475569;
+}
+
+/* =========================================================
+   DARK MODE FILE INPUT
+========================================================= */
+
+body.dark .profile-top input[type="file"]{
+  background:#334155;
+  color:white;
+}
+
+/* =========================================================
+   DARK MODE EMPTY PROFILE
+========================================================= */
+
+body.dark .empty-profile{
+  background:#1e40af;
+  border:4px dashed #60a5fa;
+  color:white;
+}
+
+/* =========================================================
+   DARK MODE TEXT
+========================================================= */
+
+body.dark .page-header p{
+  color:#cbd5e1;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+  .profile-card{
+    grid-template-columns:1fr;
+  }
+
+  .profile-top{
+    justify-content:center;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .module-page{
+    padding:15px;
+  }
+
+  .page-header h1{
+    font-size:28px;
+  }
+
+  .profile-card,
+  .settings-card{
+    padding:20px;
+  }
+
+  .profile-image,
+  .empty-profile{
+    width:140px;
+    height:140px;
+  }
+
+}
+/* =========================================================
+   MARKETPLACE
+========================================================= */
+
+.market-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+  margin-top:25px;
+}
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+.market-card{
+  background:white;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+  transition:0.3s ease;
+}
+
+.market-card:hover{
+  transform:translateY(-5px);
+}
+
+.market-image{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.card-body{
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.card-body h3{
+  margin:0;
+  font-size:20px;
+}
+
+.card-body p{
+  margin:0;
+  color:#555;
+}
+
+.card-actions{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+
+/* =========================================================
+   ADMIN UPLOAD CARD
+========================================================= */
+
+.upload-box{
+  background:white;
+  padding:30px;
+  border-radius:18px;
+  margin-top:25px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+.upload-box h2{
+  margin-bottom:20px;
+}
+
+.upload-box form{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.upload-box input,
+.upload-box textarea{
+  width:100%;
+  padding:14px;
+  border:1px solid #d1d5db;
+  border-radius:12px;
+  font-size:15px;
+  outline:none;
+}
+
+.upload-box textarea{
+  min-height:120px;
+  resize:none;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-input{
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  border:1px solid #d1d5db;
+  font-size:15px;
+}
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state{
+  background:white;
+  padding:50px;
+  text-align:center;
+  border-radius:18px;
+  margin-top:20px;
+}
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.dark .market-card,
+body.dark .upload-box,
+body.dark .empty-state{
+  background:#1e293b;
+  color:white;
+}
+
+body.dark .upload-box input,
+body.dark .upload-box textarea,
+body.dark .search-input{
+  background:#0f172a;
+  color:white;
+  border:1px solid #334155;
+}
