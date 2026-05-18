@@ -121,7 +121,7 @@ export function AdminDashboard() {
         <div>
 
           <h1>
-            bivonys
+            EDUNEXUS
           </h1>
 
           <p>
@@ -166,7 +166,7 @@ export function AdminDashboard() {
         </h2>
 
         <p>
-          Manage your entire bivonys system here.
+          Manage your entire EDUNEXUS system here.
         </p>
 
       </div>
